@@ -1,0 +1,40 @@
+# 🐍 Python 기본 무시 파일
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# 가상환경 관련
+venv/
+env/
+.venv/
+
+# 📌 PyCharm 설정 파일
+.idea/
+*.iml
+.vscode/
+
+# 📌 로그 파일
+logs/
+log/
+
+# 📌 OS 관련 불필요한 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 📌 Jupyter Notebook 체크포인트
+.ipynb_checkpoints/
+
+# 📌 환경 변수 파일 (보안 정보)
+.env
+*.env
+*.secrets
+.env.example
+
+# 📌 빌드/배포 관련
+dist/
+build/
+*.egg-info/
+.eggs/
