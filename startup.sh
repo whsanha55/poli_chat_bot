@@ -30,7 +30,7 @@ fi
 
 # 4️⃣ 새로운 컨테이너 실행
 echo "✅ 새로운 컨테이너 실행: $CONTAINER_NAME"
-docker run -it -d  --rm --env-file .env -p 9000:8000 --name $CONTAINER_NAME $IMAGE_NAME
+docker run -it -d  --rm --env-file /home/poli_chat_bot/.env -p 9000:8000 --name $CONTAINER_NAME $IMAGE_NAME
 
 
 # 실행된 컨테이너 로그 출력
