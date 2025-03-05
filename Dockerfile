@@ -8,10 +8,14 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     build-essential \
     git \
+    tzdata \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /app/log
+# 타임존 설정
+ENV TZ=Asia/Seoul
+RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+RUN mkdir -p /app/log
 
 # requirements.txt 파일 복사 및 의존성 설치
 COPY requirements.txt .
@@ -22,25 +26,9 @@ COPY . .
 
 # 환경 변수 설정
 ENV PYTHONPATH=/app
-ENV AWS_DEFAULT_REGION=${AWS_REGION}
-ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-ENV OPENAI_API_KEY=${OPENAI_API_KEY}
-ENV YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
-ENV TAVILY_API_KEY=${TAVILY_API_KEY}
-ENV PPLX_API_KEY=${PPLX_API_KEY}
-ENV ALPHAVANTAGE_API_KEY=${ALPHAVANTAGE_API_KEY}
-ENV PSQL_USERNAME=${PSQL_USERNAME}
-ENV PSQL_PASSWORD=${PSQL_PASSWORD}
-ENV PSQL_HOST=${PSQL_HOST}
-ENV PSQL_PORT=${PSQL_PORT}
-ENV PSQL_DATABASE=${PSQL_DATABASE}
-ENV PSQL_SSLMODE=${PSQL_SSLMODE}
-ENV NCP_CLOVASTUDIO_API_KEY=${NCP_CLOVASTUDIO_API_KEY}
-ENV NCP_APIGW_API_KEY=${NCP_APIGW_API_KEY}
 
 # 포트 설정
 EXPOSE 8000
 
 # 애플리케이션 실행
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"] 
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
