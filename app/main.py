@@ -2,7 +2,7 @@ from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from app.config.settings import settings
-from app.routers import chat
+from app.routers import chat, letter, check
 
 
 app = FastAPI(
@@ -33,3 +33,5 @@ async def docs_redirect():
     
 
 app.include_router(chat.router)
+app.include_router(letter.router)
+app.include_router(check.router)

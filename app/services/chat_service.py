@@ -2,7 +2,6 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from typing import List, Dict
 from app.dto.chat import ChatMessage, ChatResponse
 from agents.supervisior import create_supervisor_agent
-from utils.logging_utils import log_agent_routing, log_tool_usage
 from app.services.chat_history import chat_history
 from uuid import uuid4
 
