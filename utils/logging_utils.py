@@ -1,14 +1,20 @@
 import logging
+import os
 
 # httpx 로거 비활성화
 logging.getLogger("httpx").setLevel(logging.WARNING)
+
+# 로그 디렉토리 생성
+log_dir = 'log'
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
 
 # 기본 로깅 설정
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('log/poli_agent.log'),
+        logging.FileHandler(os.path.join(log_dir, 'poli_agent.log')),
         logging.StreamHandler()
     ]
 )
